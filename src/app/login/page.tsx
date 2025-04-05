@@ -27,9 +27,16 @@ const LoginPage = () => {
         Token: string;
         UserType: "User" | "Worker";
       };
-      window.location.replace(
-        `http://localhost:1337/checkout?token=${data.Token}&userType=${data.UserType}`
-      );
+      if (data.UserType === "User") {
+        window.location.replace(
+          `http://localhost:1337/login?token=${data.Token}`
+        );
+      }
+      if (data.UserType === "Worker") {
+        window.location.replace(
+          `http://localhost:1338/login?token=${data.Token}`
+        );
+      }
     } catch (error) {
       console.log(error);
       alert("Что-то пошло не так");
